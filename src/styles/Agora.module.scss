@@ -1,0 +1,583 @@
+
+.meetWrapper,
+.waitingRoomWrapper {
+  background-color: rgb(51, 51, 51);
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  margin: 0px;
+  position: relative;
+}
+#videos, .cardsContainer {
+  height: 90vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+/*
+------------------------------------------------
+controls styles
+------------------------------------------------ 
+*/
+.controls {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 32px;
+  width: 100%;
+  z-index: 1000;
+
+  .mainControls {
+    display: flex;
+  }
+
+  .controlBtn {
+    border: 1px solid white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    margin: 0px 20px;
+    background-color: transparent;
+  }
+  .controlBtn.leave {
+    background-color: rgb(230, 65, 65);
+    border-color: rgb(230, 65, 65);
+  }
+  
+
+  .fullscreen {
+    border: none;
+    align-self: flex-end;
+    position: absolute;
+    right: 20px;
+  }
+}
+/*
+------------------------------------------------
+controls styles ends
+------------------------------------------------ 
+*/
+/*
+------------------------------------------------
+WaitingRoom styles
+------------------------------------------------ 
+*/
+.waitingRoomWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  .videoCardPlayer,
+  .waitingContent {
+    height: 90vh;
+  width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .videoCardPlayer {
+    transform: rotateY(180deg);
+    margin: 0 auto;
+  }
+  .videoCardPlayer.a4_3 {
+    width: calc(450px * 1.333333);
+  }
+  .videoCardPlayer.a16_9 {
+    width: calc(450px * 1.777777);
+  }
+  .videoCardPlayer.a3_2 {
+    width: calc(450px * 1.5);
+  }
+  .videoCardPlayer.a21_9 {
+    width: calc(450px * 2.333333);
+  }
+  .videoCardPlayer.a16_10 {
+    width: calc(450px * 1.6);
+  }
+  .waitingContent {
+    color: white;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      text-shadow: 1px 1px 6px #242424;
+    }
+  }
+}
+
+.waitingArea {
+  max-width: 80%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 32px;
+  font-size: 18px;
+}
+.waitingBtn {
+  width: 100%;
+  font-size: 18px;
+  padding: 18px 36px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgb(103, 61, 166);
+  color: white;
+  max-width: 200px;
+}
+/*
+------------------------------------------------
+WaitingRoom styles ends
+------------------------------------------------ 
+*/
+
+/*
+------------------------------------------------
+WaitingRoom device control styles
+------------------------------------------------ 
+*/
+.devices {
+  display: flex;
+  .controlBtn {
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 16px;
+    margin: 12px 12px;
+    border-radius: 50%;
+  }
+  .controlBtnOff {
+    background-color: red;
+    border-color: transparent;
+  }
+}
+/*
+------------------------------------------------
+WaitingRoom device control styles ends
+------------------------------------------------ 
+*/
+
+
+/*
+------------------------------------------------
+VideoCards Render styles
+------------------------------------------------ 
+*/
+.videoCard {
+  width: 17em;
+  height: 10em;
+  border-radius: 16px;
+  background-color: #5c5c5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+
+  .avatar {
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 38px;
+    border-radius: 16px;
+    background-color: rgb(77, 77, 77);
+    overflow: hidden;
+    img{
+      border-radius: 50%;
+    }
+  }
+  .videoCardPlayer {
+    width: 100%;
+    height: 100%;
+    position: inherit;
+    display: flex;
+    justify-content: center;
+    div, div video{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .videoCardPlayer.a4_3 {
+    width: calc(450px * 1.333333); 
+  }
+  .videoCardPlayer.a16_9 {
+    width: calc(450px * 1.777777); 
+  }
+  .videoCardPlayer.a3_2 {
+    width: calc(450px * 1.5); 
+
+  }
+  .videoCardPlayer.a21_9 {
+    width: calc(450px * 2.333333);     
+  }
+  .videoCardPlayer.a16_10 {
+    width: calc(450px * 1.6); 
+  }
+  
+}
+
+/*
+  VIDEO RENDER LOGIC
+  Here we have 4 Layouts
+
+  
+  1.Alone
+  2.Basic   +2 attendees
+  3.Grid    +4 attendees
+  4.Column  +2 attendees
+*/
+
+/**
+* 1.Alone
+**/
+
+#videos.alone {
+  justify-content: center;
+  align-items: center;
+
+  .cardsContainer {
+    justify-content: center;
+    align-items: center;
+    .videoCard {
+      z-index: 100;
+      box-shadow: 3px 6px 16px 4px rgba(34, 34, 49, 0.36) !important;
+      height: 380px;
+      justify-content: center;
+      width: calc(380px * 1.777777); 
+      margin: auto;
+      .videoCardPlayer.a4_3 {
+        width: calc(380px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(380px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(380px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(380px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(380px * 1.6); 
+      }
+  }
+  }
+}
+/**
+* 2.Basic Layout 
+*/
+#videos.basic {
+  justify-content: center;
+  align-items: center;
+
+  .cardsContainer {
+    justify-content: center;
+    align-items: center;
+
+    .videoCard {
+      display: flex;
+      position: inherit;
+      height: 232px;
+      width: calc(232px * 1.77);
+      margin: 0 8px 40px;
+      .videoCardPlayer {
+        display: flex;
+        justify-content: center;
+        position: inherit;
+      }
+      .videoCardPlayer.a4_3 {
+        width: calc(232px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(232px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(232px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(232px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(232px * 1.6); 
+      }
+    }
+  } 
+}
+
+//3.Pinned Layout
+#videos.pinnedScreen {
+  display: flex;
+  justify-content: center;
+  
+  .pinned {
+    width: 70%;
+    height: 380px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .videoCardPlayer {
+      height: 332px;
+      width: calc(332px * 1.77777);
+    }
+  }
+  .cardsContainer{
+    width: 30%;
+    height: 380px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .videoCard {
+      margin: 12px 0;
+      position: initial;
+      width:  calc(140px * 1.77777);
+      height: 140px;
+      .videoCardPlayer { height: 140px; }
+      .videoCardPlayer.a4_3 {
+        width: calc(140px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(140px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(140px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(140px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(140px * 1.6); 
+      }
+    }
+  }
+}
+/*
+------------------------------------------------
+VideoCards Render styles ends
+------------------------------------------------ 
+*/
+
+
+
+/*
+------------------------------------------------
+FullScreen styles
+------------------------------------------------ 
+*/
+.meetWrapper:fullscreen {
+  
+  #videos {
+    height: 90vh;
+    position: relative;
+    .videoCard {
+      transition: 1s;
+    }
+  }
+
+
+#videos.alone {
+  .cardsContainer {
+    .videoCard {
+     
+      height: 600px;
+      width: calc(600px * 1.777777); 
+
+      .videoCardPlayer.a4_3 {
+        width: calc(600px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(600px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(600px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(600px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(600px * 1.6); 
+      }
+  }
+  }
+}
+/**
+* 2.Basic Layout 
+*/
+#videos.basic {
+ 
+  .cardsContainer {
+    .videoCard {
+     
+      height: 540px;
+      width: calc(540px * 1.77);
+     
+      .videoCardPlayer.a4_3 {
+        width: calc(540px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(540px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(540px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(540px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(540px * 1.6); 
+      }
+    }
+  } 
+}
+
+//3.Pinned Layout
+#videos.pinnedScreen {
+  .pinned {
+    width: 70%;
+    height: 90vh;
+    
+    .videoCardPlayer {
+      height: 540px;
+      width: calc(540px * 1.77777);
+    }
+  }
+  .cardsContainer{
+    width: 30%;
+    height: 90vh;
+    
+    .videoCard {
+    
+      width:  calc(240px * 1.77777);
+      height: 240px;
+      .videoCardPlayer { height: 240px; }
+      .videoCardPlayer.a4_3 {
+        width: calc(240px * 1.333333); 
+      }
+      .videoCardPlayer.a16_9 {
+        width: calc(240px * 1.777777); 
+      }
+      .videoCardPlayer.a3_2 {
+        width: calc(240px * 1.5); 
+      }
+      .videoCardPlayer.a21_9 {
+        width: calc(240px * 2.333333); 
+      }
+      .videoCardPlayer.a16_10 {
+        width: calc(240px * 1.6); 
+      }
+    }
+  }
+}
+  
+}
+
+/*
+------------------------------------------------
+FullScreen styles ends
+------------------------------------------------ 
+*/
+
+
+
+/*
+------------------------------------------------
+EndCall modal styles
+------------------------------------------------ 
+*/
+.endCallModal {
+  transition: .6s;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  bottom: 132px;
+  background: rgb(235, 235, 235);
+  border-radius: 16px;
+  color: rgb(44, 44, 44);
+  overflow: hidden;
+  
+  h4 {
+    text-align: center;
+  }
+  .endCallButtons {
+    display: flex;
+    justify-content: center;
+    
+    button {
+      padding: 12px 20px;
+      margin: 0 12px;
+      color: #242424;
+    }
+    button:nth-of-type(1) {
+      border: 1px solid blue;
+      color: blue;
+      background: rgb(235, 235, 235);
+    }
+    button:nth-of-type(2) {
+      background: red;
+      border: 1px solid red;
+      color: #fff;
+    }
+  }
+  h4, .endCallButtons{
+    display: none;
+  
+  }
+}
+
+@keyframes modalIn {
+  0% {
+    width: 0px;
+  height: 0px;
+  padding: 0px;
+  }
+  100% {
+    width: 400px;
+    height: 160px;
+    padding: 20px;
+  }
+}
+
+@keyframes modalContent {
+  0%{
+    opacity: 0;  
+  }
+  70% {
+    opacity: 0;  
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.endCallModal.show {
+  animation: modalIn .6s forwards;
+  h4, .endCallButtons{
+    display: flex;
+    
+    animation: modalContent .71s forwards;
+  }
+}
+
+/*
+------------------------------------------------
+EndCall modal styles ends
+------------------------------------------------ 
+*/
