@@ -23,7 +23,7 @@ const Meet: NextPage = () => {
       setSession({
         channel: "teensession",
         token:
-          "0060e075146eaf3413d8afb37c048161cf3IADIwX1dkcTvmvRzZvvEvkKOd5r4zupPuWLz74rRtOvdOGEjD4wAAAAAEABUJOp9EqDxYgEAAQASoPFi",
+          "0060e075146eaf3413d8afb37c048161cf3IAD2IJ6Kbsxq+ggUvI4KfCFFLTKrWrpEmM4iGR8m9WasWmEjD4wAAAAAEABUJOp9p8bzYgEAAQCnxvNi",
         uid: 0,
       });
     }
