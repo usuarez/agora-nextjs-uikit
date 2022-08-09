@@ -10,30 +10,10 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { ISessionUser } from "types/Agora";
 
-export interface IAgoraSession {
-  token: string;
-  screenToken: string;
-  channel: string;
-  uid: number;
-  inCall: boolean;
-  inScreenCall: boolean;
-  role: string;
-  status: string | "NOT_STARTED" | "INCALL" | "ENDED" | "LOSS" | "UNAUTH";
-  users: {
-    local?: ISessionUser;
-    remote?: ISessionUser;
-  };
-  localTrackState: {
-    video: boolean;
-    audio: boolean;
-  };
-  areTracksPublished: boolean;
-}
 interface IAgoraContext {
-  sessionData: IAgoraSession;
-  setSessionData: Dispatch<SetStateAction<IAgoraSession>>;
+  sessionData: IAgoraVideoSession;
+  setSessionData: Dispatch<SetStateAction<IAgoraVideoSession>>;
 }
 const initialValue = {
   token: "",
@@ -67,7 +47,6 @@ const SessinContext: IAgoraVideoSession = {
     status: "NOT_STARTED",
   },
   channel: { name: "", users: {} },
-  users: {},
 
   localTracks: {
     video: false,
@@ -125,10 +104,6 @@ export interface IAgoraVideoSession {
     };
     remoteScreen?: boolean;
     localScreen?: boolean;
-  };
-  users: {
-    local?: ISessionUser;
-    remote?: ISessionUser;
   };
 
   localTracks?: {
