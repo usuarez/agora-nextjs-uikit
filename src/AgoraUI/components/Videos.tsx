@@ -5,7 +5,6 @@ import {
   ICameraVideoTrack,
   ILocalVideoTrack,
 } from "agora-rtc-sdk-ng";
-import { ISessionUser } from "types/Agora";
 import { agoraContext } from "../context/agoraContext";
 
 import styles from "styles/Agora.module.scss";
@@ -108,15 +107,7 @@ export const Videos = (props: {
           </div>
         )}
         <div className={styles.cardsContainer}>
-          <VideoCard
-            videoTrack={!!localVideo ? localVideo! : null}
-            user={
-              {
-                ...sessionData.users.local,
-                id: sessionData.videoCall.uid,
-              } as ISessionUser
-            }
-          />
+          <VideoCard videoTrack={!!localVideo ? localVideo! : null} />
           {Object.keys(users).length > 0 &&
             !!remoteUserTrack &&
             !!Object.keys(users).find((u) => Number(u) < 100000) && (
@@ -128,7 +119,6 @@ export const Videos = (props: {
                       .videoTrack!) ||
                   null
                 }
-                user={sessionData.users.remote!}
               />
             )}
         </div>
