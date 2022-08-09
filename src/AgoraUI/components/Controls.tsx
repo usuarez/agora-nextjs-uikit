@@ -196,7 +196,11 @@ export const Controls = (props: {
    * When we loss the conn with the remote user
    */
   useEffect(() => {
-    if (!!channel?.users && Object.keys(channel?.users!).length > 0) {
+    if (
+      !!channel?.users &&
+      !!Object.keys(channel?.users!) &&
+      Object.keys(channel?.users!).length > 0
+    ) {
       setactiveUsers(Object.keys(channel?.users!));
     } else if (
       !!channel?.users &&
