@@ -29,7 +29,9 @@ export const Videos = (props: {
 
   useEffect(() => {
     //set remote user tracks
-    const remoteUIDVideo = Object.keys(users).find((u) => Number(u) < 100000);
+    const remoteUIDVideo = Object.keys(users).find(
+      (u) => Number(u) < 100000000000
+    );
 
     if (Object.keys(users).length > 0 && !!remoteUIDVideo) {
       setRemoteUserTrack({
@@ -38,11 +40,14 @@ export const Videos = (props: {
     } else setRemoteUserTrack(null);
 
     //set remote screen
-    const remoteScreenUID = Object.keys(users).find((u) => Number(u) > 100000);
+    const remoteScreenUID = Object.keys(users).find(
+      (u) => Number(u) > 100000000000
+    );
 
     if (
       Object.keys(users).length > 0 &&
-      Number(remoteScreenUID) !== Number(sessionData.videoCall.uid) + 100000
+      Number(remoteScreenUID) !==
+        Number(sessionData.videoCall.uid) + 100000000000
     ) {
       setRemoteScreenTrack({
         [remoteScreenUID!]: users[remoteScreenUID!] as IAgoraRTCRemoteUser,
@@ -86,11 +91,11 @@ export const Videos = (props: {
     <div>
       <div id={styles.videos} className={`${styles[layout]} `}>
         {Object.keys(users).length > 0 &&
-          !!Object.keys(users).find((u) => Number(u) > 100000) &&
+          !!Object.keys(users).find((u) => Number(u) > 100000000000) &&
           !!remoteScreenTrack && (
             <div className={styles.pinned}>
               <AgoraVideoPlayer
-                id={Math.floor(Math.random() * 10000)}
+                id={Math.floor(Math.random() * 100)}
                 track={
                   remoteScreenTrack![Object.keys(remoteScreenTrack!)[0]]
                     ?.videoTrack!
@@ -110,7 +115,7 @@ export const Videos = (props: {
           <VideoCard videoTrack={!!localVideo ? localVideo! : null} />
           {Object.keys(users).length > 0 &&
             !!remoteUserTrack &&
-            !!Object.keys(users).find((u) => Number(u) < 100000) && (
+            !!Object.keys(users).find((u) => Number(u) < 100000000000) && (
               <VideoCard
                 isRemote={true}
                 remoteVideoTrack={
