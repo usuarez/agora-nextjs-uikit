@@ -231,7 +231,6 @@ export const Controls = (props: {
         videoTrack.muted === sessionData.localTracks!.video &&
         toggleVideo();
     }
-    // eslint-disable-next-line
   }, []);
   const renderTooltip = (text: string, props: any) => (
     <Tooltip id="button-tooltip" {...props}>
