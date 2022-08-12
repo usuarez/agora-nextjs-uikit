@@ -1,0 +1,102 @@
+/*
+*GTEMPLATES------------------
+*GTEMPLATES------------------
+*GTEMPLATES------------------
+*GTEMPLATES------------------
+*GTEMPLATES------------------
+*/
+$gtemplate-0:  
+ "video1" 74vh /
+ calc(74vh * 1.7777);
+ $gtemplate-1:  
+ "video1 video2 " 54vh /
+ calc(54vh * 1.7777) calc(54vh * 1.7777);
+
+ $gtemplate-2:"video1 video2 video3" 38vh /
+ calc(38vh * 1.7777) calc(38vh * 1.7777) calc(38vh * 1.7777);
+
+ $gtemplate-3:
+ "video1 video2" 38vh
+ "video3 video4"  38vh /
+ calc(38vh * 1.7777) calc(38vh * 1.7777);
+
+ $gtemplate-4:
+ "video1 video1 video2 video2 video3 video3" 36vh
+ "video0 video4 video4 video5 video5 video0a"  36vh /
+ calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777);
+
+ $gtemplate-5:
+ "video1 video2 video3" 38vh
+ "video4 video5 video6" 38vh /
+ calc(38vh * 1.7777) calc(38vh * 1.7777) calc(38vh * 1.7777);
+ $gtemplate-6:
+ "video0a video1 video1 video2 video2 video3 video3 video0" 26vh
+ "video4 video4 video5 video5 video6 video6 video7 video7" 26vh /
+ calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777);
+
+ $gtemplate-7:
+ "video1 video2 video3 video4" 28vh
+ "video5 video6 video7 video8" 28vh  /
+ calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+ $gtemplate-8:
+ "video1 video2 video3" 28vh
+ "video4 video5 video6" 28vh 
+ "video7 video8 video9" 28vh /
+ calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+ $gtemplate-9:
+ "videoa video1 video1 video2 video2 video3 video3 videoc" 26vh
+ "video4 video4 video5 video5 video6 video6 video7 video7" 26vh 
+ "videob video8 video8 video9 video9 video10 video10 videod" 26vh /
+ calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777);
+
+
+ /*
+* FULLSCREEN GTEMPLATES------------------
+* FULLSCREEN GTEMPLATES------------------
+* FULLSCREEN GTEMPLATES------------------
+* FULLSCREEN GTEMPLATES------------------
+* FULLSCREEN GTEMPLATES------------------
+*/
+$gtemplateFs-0:  
+"video1" 74vh /
+calc(74vh * 1.7777);
+$gtemplateFs-1:  
+"video1 video2 " 54vh /
+calc(54vh * 1.7777) calc(54vh * 1.7777);
+
+$gtemplateFs-2:"video1 video2 video3" 34vh /
+calc(34vh * 1.7777) calc(34vh * 1.7777) calc(34vh * 1.7777);
+
+$gtemplateFs-3:
+"video1 video2" 38vh
+"video3 video4"  38vh /
+calc(38vh * 1.7777) calc(38vh * 1.7777);
+
+$gtemplateFs-4:
+"video1 video1 video2 video2 video3 video3" 36vh
+"video0 video4 video4 video5 video5 video0a"  36vh /
+calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777);
+
+$gtemplateFs-5:
+"video1 video2 video3" 38vh
+"video4 video5 video6" 38vh /
+calc(38vh * 1.7777) calc(38vh * 1.7777) calc(38vh * 1.7777);
+$gtemplateFs-6:
+"video0a video1 video1 video2 video2 video3 video3 video0" 22vh
+"video4 video4 video5 video5 video6 video6 video7 video7" 22vh /
+calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777);
+
+$gtemplateFs-7:
+"video1 video2 video3 video4" 23vh
+"video5 video6 video7 video8" 23vh  /
+calc(23vh * 1.7777) calc(23vh * 1.7777) calc(23vh * 1.7777) calc(23vh * 1.7777);
+$gtemplateFs-8:
+"video1 video2 video3" 28vh
+"video4 video5 video6" 28vh 
+"video7 video8 video9" 28vh /
+calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+$gtemplateFs-9:
+"videoa video1 video1 video2 video2 video3 video3 videoc" 22vh
+"video4 video4 video5 video5 video6 video6 video7 video7" 22vh 
+"videob video8 video8 video9 video9 video10 video10 videod" 22vh /
+calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777);

@@ -97,23 +97,25 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
     localTracks?.areTracksPublished,
     availableDevices,
   ]);
-
-  useEffect(() => {
-    if (
-      devicesReady &&
-      !localTracks?.areTracksPublished &&
-      availableDevices.length > 0
-    )
-      VideoCallInit({
-        appId,
-        sessionData,
-        setSessionData,
-        micTrack,
-        cameraTrack: camTrack,
-        client: callClient,
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [devicesReady, micTrack, camTrack, availableDevices]);
+  /**
+ * 
+ useEffect(() => {
+   if (
+     devicesReady &&
+     !localTracks?.areTracksPublished &&
+     availableDevices.length > 0
+   )
+     VideoCallInit({
+       appId,
+       sessionData,
+       setSessionData,
+       micTrack,
+       cameraTrack: camTrack,
+       client: callClient,
+     });
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [devicesReady, micTrack, camTrack, availableDevices]);
+ */
 
   useEffect(() => {
     router.events.on("routeChangeStart", async () => {

@@ -22,8 +22,8 @@ const Meet: NextPage = () => {
         setSession({
           channel: "teensession",
           token:
-            "0060e075146eaf3413d8afb37c048161cf3IAD2IJ6Kbsxq+ggUvI4KfCFFLTKrWrpEmM4iGR8m9WasWmEjD4wAAAAAEABUJOp9p8bzYgEAAQCnxvNi",
-          uid: 0,
+            "0060e075146eaf3413d8afb37c048161cf3IAC0x+IkPf3WJwYyaf5TJBVg/LQ4GDXuutsg2k4toOqpoGEjD4wAAAAAEACxI7THdrH3YgEAAQB2sfdi",
+          uid: Math.floor(Math.random() * 1000),
         });
       });
     }

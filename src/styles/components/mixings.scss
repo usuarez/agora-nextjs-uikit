@@ -1,0 +1,31 @@
+
+ @mixin playerAspect($base) {
+  .videoCard {
+    .videoCardPlayer.a4_3 {
+      width: calc($base * 1.333333); 
+    }
+    .videoCardPlayer.a16_9 {
+      width: calc($base * 1.777777); 
+    }
+    .videoCardPlayer.a3_2 {
+      width: calc($base * 1.5); 
+    }
+    .videoCardPlayer.a21_9 {
+      width: calc($base * 2.333333); 
+    }
+    .videoCardPlayer.a16_10 {
+      width: calc($base * 1.6); 
+    }
+  }
+ }
+
+ @mixin videoGrid($max) {
+  @for $i from 1 to $max {
+    .videoCard:nth-child(#{$i}) {
+      width: auto;
+      height: auto;
+      position: initial;
+      grid-area: video#{$i};
+    }
+  }
+ }

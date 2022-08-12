@@ -58,15 +58,18 @@ export const Videos = (props: {
   }, [Object.keys(users).length, users]);
 
   //set layout
+
   useEffect(() => {
     if (
       (!!remoteScreenTrack &&
         !!remoteScreenTrack![Object.keys(remoteScreenTrack!)[0]]) ||
       !!localScreenTrack
-    )
-      setLayout("pinnedScreen");
-    else if (Object.keys(users).length > 0) {
-      setLayout("basic");
+    ) {
+      let usersCount = Object.keys(users).length;
+      setLayout(`grid-${usersCount}-p`);
+    } else if (Object.keys(users).length > 0) {
+      let usersCount = Object.keys(users).length;
+      setLayout(`grid-${usersCount}`);
     } else {
       setLayout("alone");
     }
@@ -78,14 +81,6 @@ export const Videos = (props: {
     users,
     remoteScreenTrack,
   ]);
-
-  /**
-   * Layout classes
-   * .alone = local user alone
-   * .basic = 2 or 3 participants, centred cards in one row
-   * .grid = 4 participants, 2rows 2cards per row
-   * .column = x participants in a column
-   */
 
   return (
     <div>
@@ -103,6 +98,7 @@ export const Videos = (props: {
               />
             </div>
           )}
+
         {!!localScreenTrack && sessionData.screenCall.status !== "ENDED" && (
           <div className={styles.pinned}>
             <AgoraVideoPlayer
@@ -113,6 +109,17 @@ export const Videos = (props: {
         )}
         <div className={styles.cardsContainer}>
           <VideoCard videoTrack={!!localVideo ? localVideo! : null} />
+          {/**
+ 
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className={`${styles.videoCard}`}>
+              <div className={styles.avatar}>
+                <p className={styles.userInitial}>U{i}</p>
+              </div>
+            </div>
+          ))}
+
+ */}
           {Object.keys(users).length > 0 &&
             !!remoteUserTrack &&
             !!Object.keys(users).find((u) => Number(u) < 100000000000) && (

@@ -1,4 +1,5 @@
-
+@import './components/gridtemplates.scss';
+@import './components//mixings.scss';
 .meetWrapper,
 .waitingRoomWrapper {
   background-color: rgb(51, 51, 51);
@@ -280,92 +281,120 @@ VideoCards Render styles
   }
 }
 /**
-* 2.Basic Layout 
+* GRIDS
+* GRIDS
+* GRIDS
+* GRIDS
+* GRIDS
+* GRIDS
+* GRIDS
 */
-#videos.basic {
-  justify-content: center;
-  align-items: center;
-
+#videos[class*="grid-"] {
   .cardsContainer {
+    display: grid;
     justify-content: center;
-    align-items: center;
-
-    .videoCard {
-      display: flex;
-      position: inherit;
-      height: 232px;
-      width: calc(232px * 1.77);
-      margin: 0 8px 40px;
-      .videoCardPlayer {
-        display: flex;
-        justify-content: center;
-        position: inherit;
-      }
-      .videoCardPlayer.a4_3 {
-        width: calc(232px * 1.333333); 
-      }
-      .videoCardPlayer.a16_9 {
-        width: calc(232px * 1.777777); 
-      }
-      .videoCardPlayer.a3_2 {
-        width: calc(232px * 1.5); 
-      }
-      .videoCardPlayer.a21_9 {
-        width: calc(232px * 2.333333); 
-      }
-      .videoCardPlayer.a16_10 {
-        width: calc(232px * 1.6); 
-      }
-    }
-  } 
+    align-content: center;
+    gap: 16px 16px;
+    
+  }
 }
 
-//3.Pinned Layout
-#videos.pinnedScreen {
-  display: flex;
+#videos.grid-0 > .cardsContainer {
+  grid-template: $gtemplate-0;
+  @include videoGrid(2);
+  @include playerAspect(74vh);
+ }
+#videos.grid-1 > .cardsContainer {
+  grid-template: $gtemplate-1;
+  @include videoGrid(3);
+  @include playerAspect(54vh);
+}
+#videos.grid-2 > .cardsContainer {
+  display: grid;
+  grid-template: $gtemplate-2;
+  @include videoGrid(4);
+  @include playerAspect(54vh);
+}
+#videos.grid-3 > .cardsContainer {
+  @include videoGrid(5);
+  grid-template: $gtemplate-3;
+  @include playerAspect(50vh);
+}
+#videos.grid-4 > .cardsContainer {
+  grid-template: $gtemplate-4;
+  @include videoGrid(6);
+  @include playerAspect(38vh);
+}
+#videos.grid-5 > .cardsContainer {
+  grid-template: $gtemplate-5;
+  @include videoGrid(7);
+  @include playerAspect(38vh);
+}
+#videos.grid-6 > .cardsContainer {
+  grid-template: $gtemplate-6;
+  @include videoGrid(8);
+  @include playerAspect(38vh);
+}
+#videos.grid-7 > .cardsContainer {
+  grid-template: $gtemplate-7;
+  @include videoGrid(9);
+  @include playerAspect(28vh);
+}
+#videos.grid-8 > .cardsContainer {
+  grid-template: $gtemplate-8;
+  @include videoGrid(10);
+  @include playerAspect(28vh);
+}
+#videos.grid-9 > .cardsContainer {
+  grid-template: $gtemplate-9;
+  @include videoGrid(11);
+  @include playerAspect(28vh);
+}
+
+/*
+---------------------------
+Presentation layout
+--------------------------
+*/
+#videos.grid-0-p,
+#videos.grid-1-p,
+#videos.grid-2-p,
+#videos.grid-3-p,
+#videos.grid-4-p,
+#videos.grid-5-p,
+#videos.grid-6-p,
+#videos.grid-7-p,
+#videos.grid-8-p,
+#videos.grid-9-p {
+  display: grid;
   justify-content: center;
-  
-  .pinned {
-    width: 70%;
-    height: 380px;
-    
+    align-content: center;
+  grid-template:  "screen videos" 90vh /
+  70vw 30vw;
+  .pinned{
+    grid-area: screen;
     display: flex;
     justify-content: center;
     align-items: center;
     .videoCardPlayer {
-      height: 332px;
-      width: calc(332px * 1.77777);
+      width: 65vw;
+      height: calc(65vw / 1.7777);
     }
   }
+  
   .cardsContainer{
-    width: 30%;
-    height: 380px;
+    grid-area: videos;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 400px;
+    flex-wrap: wrap;
+    gap: 0px;
     .videoCard {
-      margin: 12px 0;
-      position: initial;
-      width:  calc(140px * 1.77777);
-      height: 140px;
-      .videoCardPlayer { height: 140px; }
-      .videoCardPlayer.a4_3 {
-        width: calc(140px * 1.333333); 
-      }
-      .videoCardPlayer.a16_9 {
-        width: calc(140px * 1.777777); 
-      }
-      .videoCardPlayer.a3_2 {
-        width: calc(140px * 1.5); 
-      }
-      .videoCardPlayer.a21_9 {
-        width: calc(140px * 2.333333); 
-      }
-      .videoCardPlayer.a16_10 {
-        width: calc(140px * 1.6); 
-      }
+      position: inherit;
+      margin: 10px;
+      height: 100px;
+      width: calc(100px * 1.77777);
     }
   }
 }
@@ -392,100 +421,57 @@ FullScreen styles
     }
   }
 
-
-#videos.alone {
-  .cardsContainer {
-    .videoCard {
-     
-      height: 600px;
-      width: calc(600px * 1.777777); 
-
-      .videoCardPlayer.a4_3 {
-        width: calc(600px * 1.333333); 
-      }
-      .videoCardPlayer.a16_9 {
-        width: calc(600px * 1.777777); 
-      }
-      .videoCardPlayer.a3_2 {
-        width: calc(600px * 1.5); 
-      }
-      .videoCardPlayer.a21_9 {
-        width: calc(600px * 2.333333); 
-      }
-      .videoCardPlayer.a16_10 {
-        width: calc(600px * 1.6); 
-      }
+  #videos.grid-0 > .cardsContainer {
+    grid-template: $gtemplateFs-0;
+    @include videoGrid(2);
+    @include playerAspect(74vh);
+   }
+  #videos.grid-1 > .cardsContainer {
+    grid-template: $gtemplateFs-1;
+    @include videoGrid(3);
+    @include playerAspect(54vh);
   }
+  #videos.grid-2 > .cardsContainer {
+    display: grid;
+    grid-template: $gtemplateFs-2;
+    @include videoGrid(4);
+    @include playerAspect(54vh);
   }
-}
-/**
-* 2.Basic Layout 
-*/
-#videos.basic {
- 
-  .cardsContainer {
-    .videoCard {
-     
-      height: 540px;
-      width: calc(540px * 1.77);
-     
-      .videoCardPlayer.a4_3 {
-        width: calc(540px * 1.333333); 
-      }
-      .videoCardPlayer.a16_9 {
-        width: calc(540px * 1.777777); 
-      }
-      .videoCardPlayer.a3_2 {
-        width: calc(540px * 1.5); 
-      }
-      .videoCardPlayer.a21_9 {
-        width: calc(540px * 2.333333); 
-      }
-      .videoCardPlayer.a16_10 {
-        width: calc(540px * 1.6); 
-      }
-    }
-  } 
-}
-
-//3.Pinned Layout
-#videos.pinnedScreen {
-  .pinned {
-    width: 70%;
-    height: 90vh;
-    
-    .videoCardPlayer {
-      height: 540px;
-      width: calc(540px * 1.77777);
-    }
+  #videos.grid-3 > .cardsContainer {
+    @include videoGrid(5);
+    grid-template: $gtemplateFs-3;
+    @include playerAspect(50vh);
   }
-  .cardsContainer{
-    width: 30%;
-    height: 90vh;
-    
-    .videoCard {
-    
-      width:  calc(240px * 1.77777);
-      height: 240px;
-      .videoCardPlayer { height: 240px; }
-      .videoCardPlayer.a4_3 {
-        width: calc(240px * 1.333333); 
-      }
-      .videoCardPlayer.a16_9 {
-        width: calc(240px * 1.777777); 
-      }
-      .videoCardPlayer.a3_2 {
-        width: calc(240px * 1.5); 
-      }
-      .videoCardPlayer.a21_9 {
-        width: calc(240px * 2.333333); 
-      }
-      .videoCardPlayer.a16_10 {
-        width: calc(240px * 1.6); 
-      }
-    }
+  #videos.grid-4 > .cardsContainer {
+    grid-template: $gtemplateFs-4;
+    @include videoGrid(6);
+    @include playerAspect(38vh);
   }
-}
+  #videos.grid-5 > .cardsContainer {
+    grid-template: $gtemplateFs-5;
+    @include videoGrid(7);
+    @include playerAspect(38vh);
+  }
+  #videos.grid-6 > .cardsContainer {
+    grid-template: $gtemplateFs-6;
+    @include videoGrid(8);
+    @include playerAspect(38vh);
+  }
+  #videos.grid-7 > .cardsContainer {
+    grid-template: $gtemplateFs-7;
+    @include videoGrid(9);
+    @include playerAspect(28vh);
+  }
+  #videos.grid-8 > .cardsContainer {
+    grid-template: $gtemplateFs-8;
+    @include videoGrid(10);
+    @include playerAspect(28vh);
+  }
+  #videos.grid-9 > .cardsContainer {
+    grid-template: $gtemplateFs-9;
+    @include videoGrid(11);
+    @include playerAspect(28vh);
+  }
   
 }
 
