@@ -22,6 +22,13 @@ export const VideoCallInit = async (data: VideoCallInitProps) => {
 
   client!.on("user-published", async (user, mediaType) => {
     //this validation also fix the extra minutes in the audio
+    console.log("//////////////////////////////////////////");
+    console.log("//////////////////////////////////////////");
+    console.log("//////////////////////////////////////////");
+    console.log(user);
+    console.log("//////////////////////////////////////////");
+    console.log("//////////////////////////////////////////");
+    console.log("//////////////////////////////////////////");
     if (Number(user.uid) - 100000000000 !== Number(uid)) {
       await client!.subscribe(user, mediaType);
       //validation to add only one user to remote tracks

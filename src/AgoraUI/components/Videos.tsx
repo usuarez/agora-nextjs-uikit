@@ -121,18 +121,21 @@ export const Videos = (props: {
 
  */}
           {Object.keys(users).length > 0 &&
-            !!remoteUserTrack &&
-            !!Object.keys(users).find((u) => Number(u) < 100000000000) && (
-              <VideoCard
-                isRemote={true}
-                remoteVideoTrack={
-                  (!!remoteUserTrack![Object.keys(remoteUserTrack!)[0]]! &&
-                    remoteUserTrack![Object.keys(remoteUserTrack!)[0]]!
-                      .videoTrack!) ||
-                  null
-                }
-              />
-            )}
+            Object.keys(users)
+              .filter((u) => Number(u) < 100000000000)
+              .map((u) => {
+                const remoteUser = users[u];
+                console.log(remoteUser);
+                return (
+                  <VideoCard
+                    key={remoteUser?.uid}
+                    isRemote={true}
+                    remoteVideoTrack={
+                      (!!remoteUser && remoteUser!.videoTrack) || null
+                    }
+                  />
+                );
+              })}
         </div>
       </div>
     </div>
