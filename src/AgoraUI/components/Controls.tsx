@@ -252,7 +252,10 @@ export const Controls = (props: {
           }
         >
           <Button
-            onClick={handleShareScreen}
+            onClick={
+              //handleShareScreen
+              () => console.log("deja el invento e.e")
+            }
             disabled={disableShareScreen}
             className={`${styles.controlBtn} ${styles.audio}`}
           >
