@@ -21,33 +21,32 @@ $gtemplate-0:
  calc(38vh * 1.7777) calc(38vh * 1.7777);
 
  $gtemplate-4:
- "video1 video1 video2 video2 video3 video3" 36vh
- "video0 video4 video4 video5 video5 video0a"  36vh /
- calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777);
+ "video0 video1 video1 video2 video2 video0a" 36vh
+"video3 video3 video4 video4 video5 video5" 36vh /
+ calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4);
 
  $gtemplate-5:
  "video1 video2 video3" 38vh
  "video4 video5 video6" 38vh /
  calc(38vh * 1.7777) calc(38vh * 1.7777) calc(38vh * 1.7777);
+ 
  $gtemplate-6:
- "video0a video1 video1 video2 video2 video3 video3 video0" 26vh
- "video4 video4 video5 video5 video6 video6 video7 video7" 26vh /
- calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777);
+ "video0a video1 video1 video2 video2 video3 video3 video0" 32vh
+ "video4 video4 video5 video5 video6 video6 video7 video7" 32vh /
+ calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1) calc(20vh * 1.1);
 
  $gtemplate-7:
- "video1 video2 video3 video4" 28vh
- "video5 video6 video7 video8" 28vh  /
- calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+ "video1 video2 video3 video4" 34vh
+ "video5 video6 video7 video8" 34vh  /
+ calc(34vh * 1.3) calc(34vh * 1.3) calc(34vh * 1.3) calc(34vh * 1.3);
  $gtemplate-8:
- "video1 video2 video3" 28vh
- "video4 video5 video6" 28vh 
- "video7 video8 video9" 28vh /
- calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+ "videob video1 video1 video2 video2 video3 video3 video4 video4 videod" 36vh
+ "video5 video5 video6 video6 video7 video7 video8 video8 video9 video9" 36vh 
+ / 18vh 18vh 18vh  18vh  18vh  18vh  18vh  18vh  18vh 18vh;
  $gtemplate-9:
- "videoa video1 video1 video2 video2 video3 video3 videoc" 26vh
- "video4 video4 video5 video5 video6 video6 video7 video7" 26vh 
- "videob video8 video8 video9 video9 video10 video10 videod" 26vh /
- calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777) calc(13vh * 1.7777);
+ "video1 video1 video2 video2 video3 video3 video4 video4 video5 video5" 36vh
+ "video6 video6 video7 video7 video8 video8 video9 video9 video10 video10" 36vh 
+ / 18vh 18vh 18vh  18vh  18vh  18vh  18vh  18vh  18vh 18vh;
 
 
  /*
@@ -73,30 +72,30 @@ $gtemplateFs-3:
 calc(38vh * 1.7777) calc(38vh * 1.7777);
 
 $gtemplateFs-4:
-"video1 video1 video2 video2 video3 video3" 36vh
-"video0 video4 video4 video5 video5 video0a"  36vh /
-calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777) calc(18vh * 1.7777);
+"video0 video1 video1 video2 video2 video0a" 36vh
+"video3 video3 video4 video4 video5 video5" 36vh /
+calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4) calc(18vh * 1.4);
 
 $gtemplateFs-5:
 "video1 video2 video3" 38vh
 "video4 video5 video6" 38vh /
-calc(38vh * 1.7777) calc(38vh * 1.7777) calc(38vh * 1.7777);
+calc(38vh * 1.4) calc(38vh * 1.4) calc(38vh * 1.4);
+
+
 $gtemplateFs-6:
-"video0a video1 video1 video2 video2 video3 video3 video0" 22vh
-"video4 video4 video5 video5 video6 video6 video7 video7" 22vh /
-calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777);
+"video0a video1 video1 video2 video2 video3 video3 video0" 32vh
+"video4 video4 video5 video5 video6 video6 video7 video7" 32vh /
+ calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1)  calc(16vh * 1.1);
 
 $gtemplateFs-7:
-"video1 video2 video3 video4" 23vh
-"video5 video6 video7 video8" 23vh  /
-calc(23vh * 1.7777) calc(23vh * 1.7777) calc(23vh * 1.7777) calc(23vh * 1.7777);
+"video1 video2 video3 video4" 34vh
+"video5 video6 video7 video8" 34vh  /
+calc(34vh * 1.1) calc(34vh * 1.1) calc(34vh * 1.1) calc(34vh * 1.1);
 $gtemplateFs-8:
-"video1 video2 video3" 28vh
-"video4 video5 video6" 28vh 
-"video7 video8 video9" 28vh /
-calc(28vh * 1.7777) calc(28vh * 1.7777) calc(28vh * 1.7777);
+"videob video1 video1 video2 video2 video3 video3 video4 video4 videod" 30vh
+"video5 video5 video6 video6 video7 video7 video8 video8 video9 video9" 30vh 
+/ 15vh 15vh 15vh  15vh  15vh  15vh  15vh  15vh  15vh 15vh;
 $gtemplateFs-9:
-"videoa video1 video1 video2 video2 video3 video3 videoc" 22vh
-"video4 video4 video5 video5 video6 video6 video7 video7" 22vh 
-"videob video8 video8 video9 video9 video10 video10 videod" 22vh /
-calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777) calc(11vh * 1.7777);
+"video1 video1 video2 video2 video3 video3 video4 video4 video5 video5" 30vh
+"video6 video6 video7 video7 video8 video8 video9 video9 video10 video10" 30vh 
+/ 15vh 15vh 15vh  15vh  15vh  15vh  15vh  15vh  15vh 15vh;

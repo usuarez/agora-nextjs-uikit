@@ -20,25 +20,11 @@ export const Videos = (props: {
   const { users } = sessionData.channel;
   const { localVideo, localScreenTrack } = props;
   const [layout, setLayout] = useState("alone");
-  const [remoteUserTrack, setRemoteUserTrack] = useState<{
-    [key: string]: IAgoraRTCRemoteUser | null;
-  } | null>({});
   const [remoteScreenTrack, setRemoteScreenTrack] = useState<{
     [key: string]: IAgoraRTCRemoteUser | null;
   } | null>({});
 
   useEffect(() => {
-    //set remote user tracks
-    const remoteUIDVideo = Object.keys(users).find(
-      (u) => Number(u) < 100000000000
-    );
-
-    if (Object.keys(users).length > 0 && !!remoteUIDVideo) {
-      setRemoteUserTrack({
-        [remoteUIDVideo]: users[remoteUIDVideo] as IAgoraRTCRemoteUser,
-      });
-    } else setRemoteUserTrack(null);
-
     //set remote screen
     const remoteScreenUID = Object.keys(users).find(
       (u) => Number(u) > 100000000000
@@ -76,7 +62,6 @@ export const Videos = (props: {
   }, [
     Object.keys(users).length,
     localScreenTrack,
-    remoteUserTrack,
     localVideo,
     users,
     remoteScreenTrack,

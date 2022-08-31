@@ -295,7 +295,8 @@ VideoCards Render styles
     justify-content: center;
     align-content: center;
     gap: 16px 16px;
-    
+    padding-bottom: 40px;
+    transition: .6s;
   }
 }
 

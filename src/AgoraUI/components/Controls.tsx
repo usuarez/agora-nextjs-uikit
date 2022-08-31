@@ -30,6 +30,8 @@ import {
 } from "agora-rtc-sdk-ng";
 import { EndCallModal } from "./EndCallModal";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { TooltipWrapper } from "@components/atoms/TooltipWrapper";
+import { handleShareScreen } from "AgoraUI/lib/handleShareScreen";
 
 export const Controls = (props: {
   audioTrack: IMicrophoneAudioTrack | null;
@@ -44,8 +46,16 @@ export const Controls = (props: {
   const [activeUsers, setactiveUsers] = useState<string[]>([]);
   const router = useRouter();
   const [disableShareScreen, setDisableShareScreen] = useState(false);
+  const setCantShareScreen = () => {
+    setDisableShareScreen(true);
+    const timer = setTimeout(() => {
+      setDisableShareScreen(false);
+    }, 5000);
 
-  const handleShareScreen = () => {
+    return () => clearTimeout(timer);
+  };
+
+  const x = () => {
     if (
       !sessionData.screenCall.inCall ||
       ["NOT_STARTED", "ENDED"].includes(sessionData?.screenCall?.status!)
@@ -97,15 +107,6 @@ export const Controls = (props: {
       });
     }
   }, [screenTrack]);
-
-  const setCantShareScreen = () => {
-    setDisableShareScreen(true);
-    const timer = setTimeout(() => {
-      setDisableShareScreen(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  };
 
   useEffect(() => {
     if (!!channel?.users) {
@@ -232,93 +233,59 @@ export const Controls = (props: {
         toggleVideo();
     }
   }, []);
-  const renderTooltip = (text: string, props: any) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {text}
-    </Tooltip>
-  );
 
   return (
     <div className={styles.controls}>
       <div className={styles.mainControls}>
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={(props) =>
-            renderTooltip(
-              !!screenTrack ? "Stop sharing" : "Share screen",
-              props
-            )
-          }
-        >
+        <TooltipWrapper text={!!screenTrack ? "Stop sharing" : "Share screen"}>
           <Button
-            onClick={handleShareScreen}
+            onClick={() =>
+              handleShareScreen(
+                sessionData,
+                setSessionData,
+                setCantShareScreen,
+                !!screenTrack?.isPlaying
+              )
+            }
             disabled={disableShareScreen}
-            className={`${styles.controlBtn} ${styles.audio}`}
+            className={`${styles.controlBtn}`}
           >
             <Easel3 width={24} height={24} />
           </Button>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={(props) =>
-            renderTooltip(
-              !audioTrack?.muted ? "Mute microphone" : "Unmute microphone",
-              props
-            )
-          }
+        </TooltipWrapper>
+
+        <TooltipWrapper
+          text={!audioTrack?.muted ? "Mute microphone" : "Unmute microphone"}
         >
-          <Button
-            onClick={toggleAudio}
-            className={`${styles.controlBtn} ${styles.audio}`}
-          >
+          <Button onClick={toggleAudio} className={`${styles.controlBtn}`}>
             {audioTrack && !audioTrack.muted ? (
               <Mic width={24} height={24} />
             ) : (
               <MicMute width={24} height={24} />
             )}
           </Button>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={(props) =>
-            renderTooltip(
-              !videoTrack?.muted ? "Mute camera" : "Unmute camera",
-              props
-            )
-          }
+        </TooltipWrapper>
+        <TooltipWrapper
+          text={!videoTrack?.muted ? "Mute camera" : "Unmute camera"}
         >
-          <Button
-            onClick={toggleVideo}
-            className={`${styles.controlBtn} ${styles.video}`}
-          >
+          <Button onClick={toggleVideo} className={`${styles.controlBtn}`}>
             {videoTrack && !videoTrack.muted ? (
               <CameraVideo width={24} height={24} />
             ) : (
               <CameraVideoOff width={24} height={24} />
             )}
           </Button>
-        </OverlayTrigger>
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={(props) => renderTooltip("End call", props)}
-        >
+        </TooltipWrapper>
+        <TooltipWrapper text={"End call"}>
           <Button
             onClick={() => setshowEndModal(true)}
             className={`${styles.controlBtn} ${styles.leave}`}
           >
             <Telephone width={24} height={24} />
           </Button>
-        </OverlayTrigger>
+        </TooltipWrapper>
       </div>
-      <OverlayTrigger
-        placement="top"
-        delay={{ show: 250, hide: 400 }}
-        overlay={(props) => renderTooltip("Full screen", props)}
-      >
+      <TooltipWrapper text={"Full screen"}>
         <Button
           onClick={toggleFullScreen}
           className={`${styles.controlBtn} ${styles.fullscreen}`}
@@ -329,7 +296,7 @@ export const Controls = (props: {
             <Fullscreen width={24} height={24} color="white" />
           )}
         </Button>
-      </OverlayTrigger>
+      </TooltipWrapper>
       <EndCallModal
         show={showEndModal}
         onConfirm={() => {

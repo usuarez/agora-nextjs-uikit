@@ -23,15 +23,20 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 import { startScreenCall } from "../lib/ScreenCall";
 import { VideoCallInit } from "../lib/VideoCall";
-import { checkMic } from "../lib/checkMic";
-import { checkCam } from "../lib/checkCam";
 
 type VideoCallProps = {
   appId: string;
   useClient: IAgoraRTCClient;
+  cameraTrack: ICameraVideoTrack | "NOT_ALLOWED" | null;
+  microphoneTrack: IMicrophoneAudioTrack | "NOT_ALLOWED" | null;
 };
 
-export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
+export const VideoCall: FC<VideoCallProps> = ({
+  appId,
+  useClient,
+  cameraTrack,
+  microphoneTrack,
+}) => {
   const callClient = useClient;
   const [screenClient, setscreenClient] = useState<IAgoraRTCClient | null>(
     useClient
@@ -41,12 +46,6 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
   const { sessionData, setSessionData } = useContext(agoraContext);
   const [availableDevices, setavailableDevices] = useState<string[]>([]);
   const { videoCall, screenCall, localTracks } = sessionData;
-  const [camTrack, setCamTrack] = useState<
-    ICameraVideoTrack | "NOT_ALLOWED" | null
-  >(null);
-  const [micTrack, setmicTrack] = useState<
-    IMicrophoneAudioTrack | "NOT_ALLOWED" | null
-  >(null);
   const [screenTrack, setScreenTrack] = useState<ILocalVideoTrack | null>(null);
 
   const StartScreenShare = useCallback(() => {
@@ -64,19 +63,7 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
     navigator.mediaDevices
       .enumerateDevices()
       .then((data) => setavailableDevices(data.map((dev) => dev.kind)));
-    const createTracks = async () => {
-      if (availableDevices.length > 0) {
-        if (availableDevices.includes("audioinput"))
-          await checkMic(setmicTrack);
-        else setmicTrack("NOT_ALLOWED");
 
-        if (availableDevices.includes("videoinput"))
-          await checkCam(setCamTrack);
-        else setCamTrack("NOT_ALLOWED");
-      }
-    };
-
-    availableDevices.length > 0 && createTracks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableDevices.length]);
 
@@ -87,12 +74,13 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
       !localTracks?.areTracksPublished &&
       availableDevices.length > 0
     ) {
-      if (micTrack !== null && camTrack !== null) setDevicesReady(true);
+      if (microphoneTrack !== null && cameraTrack !== null)
+        setDevicesReady(true);
     }
   }, [
     videoCall.inCall,
-    micTrack,
-    camTrack,
+    microphoneTrack,
+    cameraTrack,
     devicesReady,
     localTracks?.areTracksPublished,
     availableDevices,
@@ -108,12 +96,12 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
         appId,
         sessionData,
         setSessionData,
-        micTrack,
-        cameraTrack: camTrack,
+        microphoneTrack,
+        cameraTrack,
         client: callClient,
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [devicesReady, micTrack, camTrack, availableDevices]);
+  }, [devicesReady, microphoneTrack, cameraTrack, availableDevices]);
 
   useEffect(() => {
     router.events.on("routeChangeStart", async () => {
@@ -144,21 +132,10 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
 
   useEffect(() => {
     if (!screenCall?.inCall && screenCall?.status === "LEAVING") {
-      console.log("///////////////////////////////////////");
-      console.log("///////////////////////////////////////");
-      console.log("LEAVING");
-      console.log("///////////////////////////////////////");
-      console.log("///////////////////////////////////////");
-
       screenTrack?.close();
       setScreenTrack(null);
       const leaveScreenCall = async () => {
         await screenClient!.leave().then(() => {
-          console.log("///////////////////////////////////////");
-          console.log("///////////////////////////////////////");
-          console.log("LEAVE PRMISE SUCCESS");
-          console.log("///////////////////////////////////////");
-          console.log("///////////////////////////////////////");
           setSessionData((pr) => {
             return {
               ...pr,
@@ -215,8 +192,8 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
         //)
       }
       <Controls
-        videoTrack={camTrack as ICameraVideoTrack}
-        audioTrack={micTrack as IMicrophoneAudioTrack}
+        videoTrack={cameraTrack as ICameraVideoTrack}
+        audioTrack={microphoneTrack as IMicrophoneAudioTrack}
         screenTrack={screenTrack!}
         client={callClient}
       />
@@ -226,7 +203,7 @@ export const VideoCall: FC<VideoCallProps> = ({ appId, useClient }) => {
       }
       <Videos
         localScreenTrack={screenTrack}
-        localVideo={camTrack !== "NOT_ALLOWED" ? camTrack : null}
+        localVideo={cameraTrack !== "NOT_ALLOWED" ? cameraTrack : null}
       />
     </div>
   );

@@ -11,24 +11,23 @@ interface VideoCallInitProps {
   appId: string;
   sessionData: IAgoraVideoSession;
   setSessionData: Dispatch<SetStateAction<IAgoraVideoSession>>;
-  micTrack: IMicrophoneAudioTrack | "NOT_ALLOWED" | null;
+  microphoneTrack: IMicrophoneAudioTrack | "NOT_ALLOWED" | null;
   cameraTrack: ICameraVideoTrack | "NOT_ALLOWED" | null;
   client: IAgoraRTCClient;
 }
 export const VideoCallInit = async (data: VideoCallInitProps) => {
-  const { appId, sessionData, setSessionData, micTrack, cameraTrack, client } =
-    data;
+  const {
+    appId,
+    sessionData,
+    setSessionData,
+    microphoneTrack,
+    cameraTrack,
+    client,
+  } = data;
   const { uid, token, inCall } = sessionData.videoCall;
 
   client!.on("user-published", async (user, mediaType) => {
     //this validation also fix the extra minutes in the audio
-    console.log("//////////////////////////////////////////");
-    console.log("//////////////////////////////////////////");
-    console.log("//////////////////////////////////////////");
-    console.log(user);
-    console.log("//////////////////////////////////////////");
-    console.log("//////////////////////////////////////////");
-    console.log("//////////////////////////////////////////");
     if (Number(user.uid) - 100000000000 !== Number(uid)) {
       await client!.subscribe(user, mediaType);
       //validation to add only one user to remote tracks
@@ -96,16 +95,16 @@ export const VideoCallInit = async (data: VideoCallInitProps) => {
     await client!.join(appId, sessionData.channel?.name!, token!, uid);
 
     if (
-      !!micTrack &&
+      !!microphoneTrack &&
       !!cameraTrack &&
-      micTrack !== "NOT_ALLOWED" &&
+      microphoneTrack !== "NOT_ALLOWED" &&
       cameraTrack !== "NOT_ALLOWED"
     ) {
-      await client!.publish([micTrack!, cameraTrack!]);
+      await client!.publish([microphoneTrack!, cameraTrack!]);
       console.log("publish audio y video");
-    } else if (!!micTrack && micTrack !== "NOT_ALLOWED") {
+    } else if (!!microphoneTrack && microphoneTrack !== "NOT_ALLOWED") {
       console.log("publish audio");
-      await client!.publish([micTrack!]);
+      await client!.publish([microphoneTrack!]);
     } else if (!!cameraTrack && cameraTrack !== "NOT_ALLOWED") {
       console.log("publish video");
       await client!.publish([cameraTrack!]);
