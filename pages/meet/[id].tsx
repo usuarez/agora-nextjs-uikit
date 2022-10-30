@@ -1,13 +1,18 @@
 import Navbar from "@components/Navbar";
 import { AgoraContextProvider } from "AgoraUI/context/agoraContext";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { getRTCTokens } from "services/meet";
 
 const Meet: NextPage = () => {
+  const router = useRouter();
   const [session, setSession] = useState({
     channel: "teensession",
     token: "",
     uid: 0,
+    screenToken: "",
+    screenUid: 0,
   });
   const AgoraVideoCall = useRef<any>(null);
 
@@ -16,18 +21,13 @@ const Meet: NextPage = () => {
       await import("AgoraUI/index").then((comp) => {
         AgoraVideoCall.current = comp.AgoraVideoCall;
       });
+      const sdata = await getRTCTokens(router.query.id as string);
+      if (sdata) setSession(sdata);
     };
     if (AgoraVideoCall.current === null) {
-      dynamicImport().then(() => {
-        setSession({
-          channel: "lcn-xns",
-          token:
-            "007eJxTYAh57GB1xDz7aP8G8d1S554Fm51+9vK8mQnPLc3nVVX2NzwUGAxSDcxNDU3MUhPTjE0MjVMsEtOSjM2TDUwsDM0Mk9OMZ6zkSxb/zZ9ss+EYCyMDBIL47Aw5yXm6FXnFDAwA+k4iZA==",
-          uid: Math.floor(Math.random() * 1000),
-        });
-      });
+      dynamicImport();
     }
-  }, [session.token]);
+  }, [session.token, router.query.id]);
   return (
     <div>
       <Navbar />

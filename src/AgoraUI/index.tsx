@@ -27,6 +27,7 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
   uid,
   role,
 }) => {
+  AgoraRTC.setLogLevel(3);
   const useClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
   const { sessionData, setSessionData } = useContext(agoraContext);
   const [availableDevices, setavailableDevices] = useState<string[]>([]);
@@ -36,8 +37,6 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
   const [microphoneTrack, setMicrophoneTrack] = useState<
     IMicrophoneAudioTrack | "NOT_ALLOWED" | null
   >(null);
-  const appId: string = process.env.NEXT_PUBLIC_AGORA_ID!;
-
   const createTracks = async () => {
     if (availableDevices.length > 0) {
       if (availableDevices.includes("audioinput"))
@@ -90,7 +89,6 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
           cameraTrack={cameraTrack}
           microphoneTrack={microphoneTrack}
           useClient={useClient}
-          appId={"0e075146eaf3413d8afb37c048161cf3"}
         />
       ) : (
         <WaitingRoom

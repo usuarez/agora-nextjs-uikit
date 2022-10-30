@@ -25,18 +25,17 @@ import { startScreenCall } from "../lib/ScreenCall";
 import { VideoCallInit } from "../lib/VideoCall";
 
 type VideoCallProps = {
-  appId: string;
   useClient: IAgoraRTCClient;
   cameraTrack: ICameraVideoTrack | "NOT_ALLOWED" | null;
   microphoneTrack: IMicrophoneAudioTrack | "NOT_ALLOWED" | null;
 };
 
 export const VideoCall: FC<VideoCallProps> = ({
-  appId,
   useClient,
   cameraTrack,
   microphoneTrack,
 }) => {
+  const appId = process.env.NEXT_PUBLIC_PUBLIC_AGORA_ID as string;
   const callClient = useClient;
   const [screenClient, setscreenClient] = useState<IAgoraRTCClient | null>(
     useClient
