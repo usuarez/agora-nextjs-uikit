@@ -26,14 +26,11 @@ export const Videos = (props: {
 
   useEffect(() => {
     //set remote screen
-    const remoteScreenUID = Object.keys(users).find(
-      (u) => Number(u) > 100000000000
-    );
+    const remoteScreenUID = Object.keys(users).find((u) => Number(u) > 100000);
 
     if (
       Object.keys(users).length > 0 &&
-      Number(remoteScreenUID) !==
-        Number(sessionData.videoCall.uid) + 100000000000
+      Number(remoteScreenUID) !== Number(sessionData.videoCall.uid) + 100000
     ) {
       setRemoteScreenTrack({
         [remoteScreenUID!]: users[remoteScreenUID!] as IAgoraRTCRemoteUser,
@@ -71,7 +68,7 @@ export const Videos = (props: {
     <div>
       <div id={styles.videos} className={`${styles[layout]} `}>
         {Object.keys(users).length > 0 &&
-          !!Object.keys(users).find((u) => Number(u) > 100000000000) &&
+          !!Object.keys(users).find((u) => Number(u) > 100000) &&
           !!remoteScreenTrack && (
             <div className={styles.pinned}>
               <AgoraVideoPlayer
@@ -107,7 +104,7 @@ export const Videos = (props: {
  */}
           {Object.keys(users).length > 0 &&
             Object.keys(users)
-              .filter((u) => Number(u) < 100000000000)
+              .filter((u) => Number(u) < 100000)
               .map((u) => {
                 const remoteUser = users[u];
                 console.log(remoteUser);

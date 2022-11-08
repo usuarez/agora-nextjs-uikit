@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import styles from "styles/Home.module.scss";
-
+import MeetingImg from "@public/meeting.png";
 const Home: NextPage = () => {
   const [channelName, setchannelName] = useState(generateNames());
   const router = useRouter();
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
             <Button onClick={handleStartMeet}>Entrar</Button>
           </div>
           <div className={styles.features}>
-            <p>En Umeets proveemos sesiones gratuitas de alta calidad con</p>
+            <p>Sesiones gratuitas de alta calidad con</p>
             <ul>
               <li>Hasta 180 minutos de llamada de audio y video</li>
               <li>Presentar pantalla</li>
@@ -43,11 +43,7 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className={styles.joinMeet}>
-          <h3>Tienes un codigo? Unete!</h3>
-          <div className="">
-            <input type="text" name="code" placeholder="code.." />
-            <Button>Entrar</Button>
-          </div>
+          <Image src={MeetingImg} alt="meeting image" />
         </div>
       </main>
 

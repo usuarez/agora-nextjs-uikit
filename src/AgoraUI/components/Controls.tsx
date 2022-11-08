@@ -300,7 +300,7 @@ export const Controls = (props: {
       <EndCallModal
         show={showEndModal}
         onConfirm={() => {
-          leaveChannel("ENDED");
+          leaveChannel("ENDED").then(() => router.push("/"));
         }}
         onReject={() => setshowEndModal(false)}
       />
