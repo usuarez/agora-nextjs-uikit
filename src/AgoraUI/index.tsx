@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import { checkClientBrowser } from "lib/checkClientBrowser";
 import { createMicrophoneTrack } from "./lib/createMicrophoneTrack";
 import { createCameraTrack } from "./lib/createCameraTrack";
+import { InviteWidget } from "./components/InviteWidget";
 export const AgoraVideoCall: FC<VideoCallProps> = ({
   token,
   screenToken,
@@ -27,10 +28,14 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
   uid,
   role,
 }) => {
+  const router = useRouter();
+  console.log(router.asPath);
   AgoraRTC.setLogLevel(3);
   const useClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
   const { sessionData, setSessionData } = useContext(agoraContext);
   const [availableDevices, setavailableDevices] = useState<string[]>([]);
+  const [closeWidget, setCloseWidget] = useState(false);
+
   const [cameraTrack, setCameraTrack] = useState<
     ICameraVideoTrack | "NOT_ALLOWED" | null
   >(null);
@@ -55,6 +60,7 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
     availableDevices.length > 0 && createTracks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableDevices.length]);
+
   useEffect(() => {
     setSessionData((prev) => ({
       ...prev,
@@ -96,6 +102,7 @@ export const AgoraVideoCall: FC<VideoCallProps> = ({
           microphoneTrack={microphoneTrack as IMicrophoneAudioTrack}
         />
       )}
+      {!closeWidget && <InviteWidget setClose={() => setCloseWidget(true)} />}
     </div>
   );
 };

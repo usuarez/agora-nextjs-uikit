@@ -1,5 +1,5 @@
-@import './components/gridtemplates.scss';
-@import './components//mixings.scss';
+@import "./components/gridtemplates.scss";
+@import "./components//mixings.scss";
 .meetWrapper,
 .waitingRoomWrapper {
   background-color: rgb(51, 51, 51);
@@ -9,7 +9,8 @@
   margin: 0px;
   position: relative;
 }
-#videos, .cardsContainer {
+#videos,
+.cardsContainer {
   height: 90vh;
   width: 100%;
   position: relative;
@@ -51,7 +52,6 @@ controls styles
     background-color: rgb(230, 65, 65);
     border-color: rgb(230, 65, 65);
   }
-  
 
   .fullscreen {
     border: none;
@@ -80,7 +80,7 @@ WaitingRoom styles
   .videoCardPlayer,
   .waitingContent {
     height: 90vh;
-  width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -169,7 +169,6 @@ WaitingRoom device control styles ends
 ------------------------------------------------ 
 */
 
-
 /*
 ------------------------------------------------
 VideoCards Render styles
@@ -198,7 +197,7 @@ VideoCards Render styles
     border-radius: 16px;
     background-color: rgb(77, 77, 77);
     overflow: hidden;
-    img{
+    img {
       border-radius: 50%;
     }
   }
@@ -208,29 +207,28 @@ VideoCards Render styles
     position: inherit;
     display: flex;
     justify-content: center;
-    div, div video{
+    div,
+    div video {
       width: 100%;
       height: 100%;
     }
   }
-  
+
   .videoCardPlayer.a4_3 {
-    width: calc(450px * 1.333333); 
+    width: calc(450px * 1.333333);
   }
   .videoCardPlayer.a16_9 {
-    width: calc(450px * 1.777777); 
+    width: calc(450px * 1.777777);
   }
   .videoCardPlayer.a3_2 {
-    width: calc(450px * 1.5); 
-
+    width: calc(450px * 1.5);
   }
   .videoCardPlayer.a21_9 {
-    width: calc(450px * 2.333333);     
+    width: calc(450px * 2.333333);
   }
   .videoCardPlayer.a16_10 {
-    width: calc(450px * 1.6); 
+    width: calc(450px * 1.6);
   }
-  
 }
 
 /*
@@ -260,24 +258,24 @@ VideoCards Render styles
       box-shadow: 3px 6px 16px 4px rgba(34, 34, 49, 0.36) !important;
       height: 380px;
       justify-content: center;
-      width: calc(380px * 1.777777); 
+      width: calc(380px * 1.777777);
       margin: auto;
       .videoCardPlayer.a4_3 {
-        width: calc(380px * 1.333333); 
+        width: calc(380px * 1.333333);
       }
       .videoCardPlayer.a16_9 {
-        width: calc(380px * 1.777777); 
+        width: calc(380px * 1.777777);
       }
       .videoCardPlayer.a3_2 {
-        width: calc(380px * 1.5); 
+        width: calc(380px * 1.5);
       }
       .videoCardPlayer.a21_9 {
-        width: calc(380px * 2.333333); 
+        width: calc(380px * 2.333333);
       }
       .videoCardPlayer.a16_10 {
-        width: calc(380px * 1.6); 
+        width: calc(380px * 1.6);
       }
-  }
+    }
   }
 }
 /**
@@ -296,7 +294,7 @@ VideoCards Render styles
     align-content: center;
     gap: 16px 16px;
     padding-bottom: 40px;
-    transition: .6s;
+    transition: 0.6s;
   }
 }
 
@@ -304,7 +302,7 @@ VideoCards Render styles
   grid-template: $gtemplate-0;
   @include videoGrid(2);
   @include playerAspect(74vh);
- }
+}
 #videos.grid-1 > .cardsContainer {
   grid-template: $gtemplate-1;
   @include videoGrid(3);
@@ -369,10 +367,11 @@ Presentation layout
 #videos.grid-9-p {
   display: grid;
   justify-content: center;
-    align-content: center;
-  grid-template:  "screen videos" 90vh /
-  70vw 30vw;
-  .pinned{
+  align-content: center;
+  grid-template:
+    "screen videos" 90vh /
+    70vw 30vw;
+  .pinned {
     grid-area: screen;
     display: flex;
     justify-content: center;
@@ -382,8 +381,8 @@ Presentation layout
       height: calc(65vw / 1.7777);
     }
   }
-  
-  .cardsContainer{
+
+  .cardsContainer {
     grid-area: videos;
     display: flex;
     justify-content: center;
@@ -405,15 +404,12 @@ VideoCards Render styles ends
 ------------------------------------------------ 
 */
 
-
-
 /*
 ------------------------------------------------
 FullScreen styles
 ------------------------------------------------ 
 */
 .meetWrapper:fullscreen {
-  
   #videos {
     height: 90vh;
     position: relative;
@@ -426,7 +422,7 @@ FullScreen styles
     grid-template: $gtemplateFs-0;
     @include videoGrid(2);
     @include playerAspect(74vh);
-   }
+  }
   #videos.grid-1 > .cardsContainer {
     grid-template: $gtemplateFs-1;
     @include videoGrid(3);
@@ -473,7 +469,6 @@ FullScreen styles
     @include videoGrid(11);
     @include playerAspect(28vh);
   }
-  
 }
 
 /*
@@ -482,15 +477,13 @@ FullScreen styles ends
 ------------------------------------------------ 
 */
 
-
-
 /*
 ------------------------------------------------
 EndCall modal styles
 ------------------------------------------------ 
 */
 .endCallModal {
-  transition: .6s;
+  transition: 0.6s;
   position: absolute;
   width: 0px;
   height: 0px;
@@ -499,14 +492,14 @@ EndCall modal styles
   border-radius: 16px;
   color: rgb(44, 44, 44);
   overflow: hidden;
-  
+
   h4 {
     text-align: center;
   }
   .endCallButtons {
     display: flex;
     justify-content: center;
-    
+
     button {
       padding: 12px 20px;
       margin: 0 12px;
@@ -523,17 +516,17 @@ EndCall modal styles
       color: #fff;
     }
   }
-  h4, .endCallButtons{
+  h4,
+  .endCallButtons {
     display: none;
-  
   }
 }
 
 @keyframes modalIn {
   0% {
     width: 0px;
-  height: 0px;
-  padding: 0px;
+    height: 0px;
+    padding: 0px;
   }
   100% {
     width: 400px;
@@ -543,23 +536,24 @@ EndCall modal styles
 }
 
 @keyframes modalContent {
-  0%{
-    opacity: 0;  
+  0% {
+    opacity: 0;
   }
   70% {
-    opacity: 0;  
+    opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
 
 .endCallModal.show {
-  animation: modalIn .6s forwards;
-  h4, .endCallButtons{
+  animation: modalIn 0.6s forwards;
+  h4,
+  .endCallButtons {
     display: flex;
-    
-    animation: modalContent .71s forwards;
+
+    animation: modalContent 0.71s forwards;
   }
 }
 
@@ -568,3 +562,39 @@ EndCall modal styles
 EndCall modal styles ends
 ------------------------------------------------ 
 */
+
+/*
+Invite widget
+*/
+
+.inviteWidget {
+  z-index: 100;
+  position: fixed;
+  bottom: 40px;
+  left: 20px;
+  width: 320px;
+  background-color: rgb(223, 223, 223);
+  border-radius: 25px;
+  padding: 12px;
+  .closebtn {
+    width: 32px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    svg {
+      margin-left: 8px;
+    }
+  }
+  p:nth-of-type(1) {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  p:nth-of-type(2) {
+    font-weight: 600;
+  }
+}

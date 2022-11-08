@@ -73,10 +73,7 @@ export const WaitingRoom: FC<{
         )}
       <div className={styles.waitingContent}>
         <div className={styles.waitingArea}>
-          <p>
-            Estamos listos, puedes invitar a otros con el siguiente codigo:{" "}
-            {router.query.id}
-          </p>
+          <p>Estamos listos, puedes entrar cuando quieras</p>
           <div className={styles.devices}>
             <Button
               onClick={() =>

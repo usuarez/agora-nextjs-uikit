@@ -3,6 +3,7 @@ import { AgoraContextProvider } from "AgoraUI/context/agoraContext";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { getRTCTokens } from "services/meet";
 
 const Meet: NextPage = () => {
@@ -32,7 +33,23 @@ const Meet: NextPage = () => {
     <div>
       <Navbar />
       <AgoraContextProvider>
-        {session.token !== "" && <AgoraVideoCall.current {...session} />}
+        {session.token !== "" ? (
+          <AgoraVideoCall.current {...session} />
+        ) : (
+          <div
+            className="d-flex justify-content-center flex-column align-items-center"
+            style={{
+              height: "90vh",
+            }}
+          >
+            <p>Cargando los datos de la reunion, por favor espera</p>
+            <Spinner animation="border" />
+            <p>
+              La solicitud podria tardar 30 segundos debido a la suspension del
+              servicio gratuito
+            </p>
+          </div>
+        )}
       </AgoraContextProvider>
     </div>
   );
